@@ -1,0 +1,7 @@
+
+#home{
+    font-size:30px;
+    display: flex;
+    color:red;
+    flex-direction: row;
+}
