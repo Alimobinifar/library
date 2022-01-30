@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>نتایج جستجو</title>
+</head>
+<body>
+    {% for elm in data %}
+          <div class="card">
+            <img src="{{ elm.img.url }}" class="card-img-top" ,height="200" width="100">
+            <div class="card-body">
+                <h5 class="card-title">{{ elm.name }}</h5>
+              <p class="card-text"><small class="text-muted">{{elm.price}}</small></p>
+            </div>
+          </div>
+    {% endfor %}
+</body>
+</html>

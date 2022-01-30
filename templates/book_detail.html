@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>انقلاب ما انفجار نور بود</title>
 </head>
 <body>
-$END$
+{% block content %}
+    {% for elm in data %}
+        <div class="card">
+            <img src="{{ elm.img.url }}" class="card-img-top" alt="..." ,height="200" width="100">
+            <div class="card-body">
+              <h5 class="card-title">{{ elm.name }}</h5>
+                <h5 class="card-title">{{ elm.publisher }}</h5>
+                <h5 class="card-title">{{ elm.pages }}</h5>
+                <h5 class="card-title">{{ elm.author }}</h5>
+              <p class="card-text"><small class="text-muted">{{elm.price}}</small></p>
+            </div>
+          </div>s
+    {% endfor %}
+
+{% endblock content %}
+
 </body>
 </html>

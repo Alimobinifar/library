@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<div class="row">
+        <li id="card-cat">
+        {% for elm in name %}
+          <div class="card">
+            <img src="{{ elm.img.url }}" class="card-img-top" alt="..." ,height="200" width="100">
+            <div class="card-body">
+              <h5 class="card-title">{{ elm.name }}</h5>
+              <p class="card-text"><small class="text-muted">{{elm.price}}</small></p>
+            </div>
+          </div>
+        {% endfor %}
+        </li>
+        </div>
+
+
+
 </body>
 </html>

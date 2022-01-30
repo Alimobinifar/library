@@ -10,7 +10,11 @@
 }
 
 #card{
+    margin-top: 150px;
     display: flex;
-    flex-direction: column;
-    margin-right: 30px;
+    flex-direction: row;
+    margin-right: 100px;
+}
+.card-body{
+    color: #005cbf;
 }

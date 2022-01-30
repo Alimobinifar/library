@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 
@@ -7,17 +8,52 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-
-<body>
 <h1> <p style="text-align:center;">به کتابفروشی لاهور خوش آمدید</p></h1>
-{% block content %}
-<ul id="home">
-    {%for i in cat%}
-       <h2 >
-            <li>{{i.category}}</li>
-       </h2>
-    {% endfor %}
-{% endblock content %}
+<body>
+
+<form action="{% url 'search' %}" method="GET">
+    <input name="q" type='search' placeholder="search"></input>
+    <input type='submit' value="search"></input>
+</form>
+
+
+
+<form action="{% url 'filter' %}" method="GET">
+    <input name="q" type='search' placeholder="min_price"></input>
+    <input name="q" type='search' placeholder="max_price"></input>
+    <input type='submit' value="filter"></input>
+</form>
+
+
+
+
+
+<div>
+    <ul>
+        {% for i in name %}
+            <li id="home">
+            <h2><a href="{% url 'book-cat-list' i.title %}">{{ i }}</a></h2>
+            </li>
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+        <div class="row">
+        <li id="card">
+        {% for elm in book %}
+          <div class="card">
+            <img src="{{ elm.img.url }}" class="card-img-top" alt="..." ,height="200" width="100">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'show_book' elm.name %}">{{ elm.name }}</a></h5>
+              <p class="card-text"><small class="text-muted">{{elm.price}}</small></p>
+            </div>
+          </div>
+        {% endfor %}
+        </li>
+        </div>
+
 </ul>
 </body>
 </html>
