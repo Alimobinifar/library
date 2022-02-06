@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-<body>
-$END$
+<body dir="rtl">
+
+<h1>سبد خرید فعلی شما :</h1>
+
+    {%for elm in data%}
+       <h1>{{elm.item}} با تعداد {{elm.count}}وضعیت سفارش : {{ elm.status }}</h1>
+        <form action="{% url 'cancellorder' %}" method="GET">
+            <input name="q" type='hidden' value={{ elm.id }}></input>
+            <input type='submit' value="Cancell this order"></input>
+        </form>
+
+        <form action="{% url 'reactiveorder' %}" method="GET">
+            <input name="q" type='hidden' value={{ elm.id }}></input>
+            <input type='submit' value="reactive"></input>
+        </form>
+    {% endfor %}
+<form action="{% url 'pay' %}" method="GET">
+    <input type='submit' value="قطعی کردن اردر ها "></input>
+</form>
 </body>
 </html>

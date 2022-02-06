@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>history</title>
 </head>
 <body>
-$END$
+    <h1>برای دیدن جزییات هر سبد کلیک کنید</h1>
+{% for elm in data %}
+    <h3>
+        {{ elm.id }} {{ elm.date }}
+        <form action="{% url "history-detail" %}" method="GET">
+            <input name="q" type='hidden' value={{elm.id}}></input>
+            <input type='submit' value="نماش اطلاعات این سبد"></input>
+        </form>
+    </h3>
+
+
+
+{% endfor %}
+
 </body>
 </html>

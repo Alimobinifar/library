@@ -6,18 +6,16 @@ from book.models import Book
 
 
 class FinalBasket(models.Model):
-
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     date = models.DateTimeField()
 
 
 class ShoppingBasket(models.Model):
-
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     item = models.ForeignKey(Book, on_delete=models.PROTECT)
     date = models.DateTimeField()
     count = models.IntegerField()
-    basket = models.ForeignKey(FinalBasket, models.PROTECT)
+    basket = models.ForeignKey(FinalBasket, models.PROTECT, null=True)
     state_choices = [
         ('ok', 'خرید نهایی شده '),
         ('pending', 'در انتظار پرداخت'),

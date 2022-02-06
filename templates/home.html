@@ -11,6 +11,15 @@
 <h1> <p style="text-align:center;">به کتابفروشی لاهور خوش آمدید</p></h1>
 <body>
 
+<form action="{% url 'show-basket' %}" method="GET">
+    <input type='submit' value="نمایش سبد خرید"></input>
+</form>
+
+<form action="{% url 'history' %}" method="GET">
+    <input type='submit' value="نمایش سوابق خرید من "></input>
+</form>
+
+
 <form action="{% url 'search' %}" method="GET">
     <input name="q" type='search' placeholder="search"></input>
     <input type='submit' value="search"></input>
@@ -38,6 +47,11 @@
 
     </ul>
 
+
+
+
+
+
 </div>
 
         <div class="row">
@@ -48,13 +62,22 @@
             <div class="card-body">
                 <h5 class="card-title"><a href="{% url 'show_book' elm.name %}">{{ elm.name }}</a></h5>
               <p class="card-text"><small class="text-muted">{{elm.price}}</small></p>
+
+                <form action="{% url 'add' %}" method="GET">
+                    <input name="count" type='count' placeholder="تعداد"></input>
+                    <input name="book_id" type='hidden' placeholder="ایدی کتاب" value={{ elm.id }}></input>
+                    <input type='submit' value="افزودن به سبد"></input>
+                </form>
+
             </div>
           </div>
+
         {% endfor %}
         </li>
         </div>
 
 </ul>
+
 </body>
 </html>
 
