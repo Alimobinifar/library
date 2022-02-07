@@ -13,12 +13,12 @@ class AddToBasket(View):
     def get(self, request):
         book_id = request.GET.get("book_id")
         print(book_id)
-        count=request.GET.get("count")
+        count = request.GET.get("count")
         print(count)
         qs = Book.objects.get(id=book_id)
         user_id = request.user
-        qs2 = Book.objects.filter(id=book_id)
-        time=datetime.datetime.now()
+        # qs2 = Book.objects.filter(id=book_id)
+        time = datetime.datetime.now()
         shopping_basket = ShoppingBasket(user=user_id, item=qs, date=time, count=count, status='pending')
         shopping_basket.save()
         return HttpResponse("Added SuccessFull")
@@ -34,9 +34,9 @@ class ShowBasket(View):
 
 class CancellOrder(View):
     def get(self, request):
-        order_id=request.GET.get('q')
+        order_id = request.GET.get('q')
         qs = ShoppingBasket.objects.filter(id=order_id)
-        if qs.get(id=order_id).status== 'pending':
+        if qs.get(id=order_id).status == 'pending':
             qs.update(status='cancelled')
             return HttpResponse("Cancelled SuccessFull")
         else:
@@ -54,7 +54,7 @@ class ReactiveOrder(View):
             return HttpResponse("change status is not possible beacuse its status is : ok ")
 
 
-class Pay(View): #
+class Pay(View):
     def get(self, request):
         user_id = request.user
         qs = ShoppingBasket.objects.filter(status='pending', user_id=user_id)
@@ -63,35 +63,3 @@ class Pay(View): #
         user_basket.save()
         qs.update(status='ok', basket_id=user_basket)
         return HttpResponse("سفارشات شما ثبت شد و بزودی ارسال خواهند شد")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -29,9 +29,9 @@ class Book(models.Model):
     pages = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     price = models.IntegerField()
-    cat = models.ForeignKey(Category, on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='images/')
-    publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT)
+    cat = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    img = models.ImageField(upload_to='images/', null=True)
+    publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return self.name
