@@ -31,7 +31,10 @@ class BookById(APIView):
 
 class BookByCat(APIView):
     def post(self, request):
-        cat_title = request.GET.get("q")
-        qs = Book.objects.filter(cat__title=cat_title)
-        ser_data = BookByCatSerializer(qs, many=True)
-        print(ser_data["cat"])
+        # cat =request.data
+        # qs = Category.objects.filter(title=cat["cat"])
+        ser_data=BookByCatSerializer(data=request.data)
+        if ser_data.is_valid():
+            qs = Book.objects.filter(cat__title=ser_data.validated_data["cat"])
+            return Response({qs.values("name")})
+

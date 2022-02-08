@@ -8,6 +8,7 @@ class BookSerializer(serializers.Serializer):
     name = serializers.CharField()
     author = serializers.CharField()
     price = serializers.IntegerField()
+    cat = serializers.CharField()
 
 
 

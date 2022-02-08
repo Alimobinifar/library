@@ -11,6 +11,7 @@ from django.conf.urls.static import static
 from rest_framework.authtoken import views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
     path('', Home.as_view()),
@@ -30,7 +31,7 @@ urlpatterns = [
     path('generate-token', views.obtain_auth_token),
     path('show-all-books/', ShowAllBooks.as_view()),
     path('book/', BookById.as_view()),
-    path('book-by-cat', BookByCat.as_view())
+    path('book-by-cat', BookByCat.as_view()),
 
 
 
