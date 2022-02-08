@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import path
 from book.views import Home, BookDetail, ShowBook, Search, books, book
 from BascektShop.views import AddToBasket, ShowBasket, CancellOrder, ReactiveOrder, Pay
-from book.api_view import ShowAllBooks, ShowBooksByCategory
+from book.api_view import ShowAllBooks, BookById, BookByCat
 from history.views import ShowHistory, HistoryDetail
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,7 +29,9 @@ urlpatterns = [
     path('book-filter/<str:name>', book),
     path('generate-token', views.obtain_auth_token),
     path('show-all-books/', ShowAllBooks.as_view()),
-    path('show-books-by-cat/', ShowBooksByCategory.as_view()),
+    path('book/', BookById.as_view()),
+    path('book-by-cat', BookByCat.as_view())
+
 
 
 
