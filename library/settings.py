@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'book',
     'BascektShop',
     'history',
+    'user',
     'rest_framework',
     'rest_framework.authtoken'
 ]

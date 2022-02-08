@@ -4,24 +4,26 @@ from django.views import View
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-
 from .models import ShoppingBasket, FinalBasket
 from book.models import Book
 
 
 class AddToBasket(View):
     def get(self, request):
-        book_id = request.GET.get("book_id")
-        print(book_id)
-        count = request.GET.get("count")
-        print(count)
-        qs = Book.objects.get(id=book_id)
-        user_id = request.user
-        # qs2 = Book.objects.filter(id=book_id)
-        time = datetime.datetime.now()
-        shopping_basket = ShoppingBasket(user=user_id, item=qs, date=time, count=count, status='pending')
-        shopping_basket.save()
-        return HttpResponse("Added SuccessFull")
+        if request.user.is_authenticated:
+            book_id = request.GET.get("book_id")
+            print(book_id)
+            count = request.GET.get("count")
+            print(count)
+            qs = Book.objects.get(id=book_id)
+            user_id = request.user
+            # qs2 = Book.objects.filter(id=book_id)
+            time = datetime.datetime.now()
+            shopping_basket = ShoppingBasket(user=user_id, item=qs, date=time, count=count, status='pending')
+            shopping_basket.save()
+            return HttpResponse("Added SuccessFull")
+        else:
+            return redirect(request, 'user.urls.login_user', )
 
 
 class ShowBasket(View):

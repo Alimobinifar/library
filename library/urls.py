@@ -1,4 +1,3 @@
-from _ast import Add
 
 from django.contrib import admin
 from django.urls import path
@@ -9,12 +8,13 @@ from history.views import ShowHistory, HistoryDetail
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.authtoken import views
+from user.views import user_login
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
-    path('', Home.as_view()),
+    path('', Home.as_view(), name='home'),
     path('book-cat-list/<str:cat_name>/', BookDetail.as_view(), name='book-cat-list'),
     path('book-detail/<str:book_name>/', ShowBook.as_view(), name='show_book'),
     path('book-search', Search.as_view(), name='search'),
@@ -28,10 +28,11 @@ urlpatterns = [
     path('history-detail', HistoryDetail.as_view(), name='history-detail'),
     path('book-name', books),
     path('book-filter/<str:name>', book),
-    path('generate-token', views.obtain_auth_token),
+    path('generate-token/', views.obtain_auth_token),
     path('show-all-books/', ShowAllBooks.as_view()),
     path('book/', BookById.as_view()),
-    path('book-by-cat', BookByCat.as_view()),
+    path('book-by-cat/', BookByCat.as_view()),
+    path('login-form/', user_login, name='user_login')
 
 
 
