@@ -9,6 +9,12 @@
     <title>Home</title>
 </head>
 <h1> <p style="text-align:center;">به کتابفروشی لاهور خوش آمدید</p></h1>
+<h4> <p style="text-align:center;"><a href="user-register">ثبت نام در سایت </a></p></h4>
+    {% if user.is_authenticated %}
+        <p><a href='user-logout'>logout</a></p>
+        {% else %}
+            <p><a href="login-form">login in site ....</a></p>
+    {% endif %}
 <body>
 
 <form action="{% url 'show-basket' %}" method="GET">

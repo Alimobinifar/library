@@ -28,11 +28,13 @@ class AddToBasket(View):
 
 class ShowBasket(View):
     def get(self, request):
-        user_id = request.user
-        qs = ShoppingBasket.objects.filter(user_id=user_id)
-        ctx = {"data": qs}
-        return render(request, 'Basket.html', ctx)
-
+        if request.user.is_authenticated:
+            user_id = request.user
+            qs = ShoppingBasket.objects.filter(user_id=user_id)
+            ctx = {"data": qs}
+            return render(request, 'Basket.html', ctx)
+        else:
+            return redirect('user_login')
 
 class CancellOrder(View):
     def get(self, request):
