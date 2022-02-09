@@ -23,7 +23,7 @@ class AddToBasket(View):
             shopping_basket.save()
             return HttpResponse("Added SuccessFull")
         else:
-            return redirect(request, 'user.urls.login_user', )
+            return redirect('user_login', )
 
 
 class ShowBasket(View):
