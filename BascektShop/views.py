@@ -12,18 +12,17 @@ class AddToBasket(View):
     def get(self, request):
         if request.user.is_authenticated:
             book_id = request.GET.get("book_id")
-            print(book_id)
             count = request.GET.get("count")
-            print(count)
             qs = Book.objects.get(id=book_id)
             user_id = request.user
+            print(user_id)
             # qs2 = Book.objects.filter(id=book_id)
             time = datetime.datetime.now()
             shopping_basket = ShoppingBasket(user=user_id, item=qs, date=time, count=count, status='pending')
             shopping_basket.save()
             return HttpResponse("Added SuccessFull")
         else:
-            return redirect('user_login', )
+            return redirect('user_login')
 
 
 class ShowBasket(View):

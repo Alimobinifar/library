@@ -1,13 +1,13 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-
 from book.models import Book
 
 
 class FinalBasket(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     date = models.DateTimeField()
+
 
 
 class ShoppingBasket(models.Model):

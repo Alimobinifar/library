@@ -4,7 +4,7 @@ from django.contrib import messages
 
 class LoginForm(forms.Form):
     Username = forms.CharField()
-    Password = forms.CharField()
+    Password = forms.CharField(widget=forms.PasswordInput)
 
 
 class RegisterUserForm(forms.Form):

@@ -5,13 +5,11 @@ from .models import Book, Category, Author
 from django.db.models import Q
 
 
-class ShowAllBooks(APIView): #register and show data from/on database with api
-
+class ManageBooks(APIView): #register and show data from/on database with api
     def get(self, reqeust):
         qs = Book.objects.all()
         ser_data = BookSerializer(qs, many=True)
         return Response(ser_data.data)
-
 
     def post(self, request):
         data = BookSerializer(data=request.data)
@@ -20,6 +18,7 @@ class ShowAllBooks(APIView): #register and show data from/on database with api
             return Response({"message": "registered on db was success..."})
         else:
             return Response({"Error": "please send validated data "})
+
 
 class BookById(APIView):
     def get(self, reqeust):
@@ -30,9 +29,8 @@ class BookById(APIView):
 
 
 class BookByCat(APIView):
+
     def post(self, request):
-        # cat =request.data
-        # qs = Category.objects.filter(title=cat["cat"])
         ser_data=BookByCatSerializer(data=request.data)
         if ser_data.is_valid():
             qs = Book.objects.filter(cat__title=ser_data.validated_data["cat"])

@@ -17,7 +17,7 @@ class Home(View):
             qs2 = Book.objects.filter()
         else:
             qs = Category.objects.filter(parent_id=None)
-            qs2 = Book.objects.filter(price__gt=min_price, price__gte=max_price)
+            qs2 = Book.objects.filter(price__gt=min_price, price__lte=max_price)
 
         context = {'name': qs, 'book': qs2}
         return render(request, 'home.html', context)
